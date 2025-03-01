@@ -915,7 +915,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1a9bbd1a3023a4b4eb91545b30de9494, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  detectionRange: 0
+  detectionRange: 4
   crouchModifier: 0.5
   target: {fileID: 1023558085}
   minRotationAmount: 15

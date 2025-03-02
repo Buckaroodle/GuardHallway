@@ -79,6 +79,7 @@ public class GuardController : MonoBehaviour
             StartCoroutine(Unstuck());
             // Reset the timer after the turn
             stationaryTimer = 0f; 
+            Debug.Log("Guard Unstuck Co-routine completed!");
         }
 
         // Check distance to target
@@ -151,6 +152,7 @@ public class GuardController : MonoBehaviour
             // Start Rotating randomly
             StartCoroutine(RotateRandomly());
         }
+        Debug.Log("Bounce completed!");
     }
 
     // Rotates the guard a random amount within a set range
@@ -164,6 +166,7 @@ public class GuardController : MonoBehaviour
         yield return new WaitUntil(() => Vector3.Distance(transform.position, backUpPosition) < 0.1f);
 
         // Prevent Guard from moving during bounce
+        Debug.Log("agent.isStopped set to true");
         agent.isStopped = true;
 
         // Randomly choose whether to rotate left (-1) or right (1)
@@ -188,11 +191,14 @@ public class GuardController : MonoBehaviour
         // Update the direction the guard is moving towards based on the new rotation
         lastDirection = transform.forward;
 
+        // After bounce, set a new destination
+        Debug.Log("agent.isStopped set to false");
+        agent.isStopped = false;
+
         // Wait for the specified delay before allowing another rotation
         yield return new WaitForSeconds(bounceInterval);
 
         // Enable rotation after the delay
-        agent.isStopped = false;
         isBouncing = false;
     }
 
